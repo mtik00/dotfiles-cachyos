@@ -13,7 +13,7 @@ command.  You can run this multiple times without issues.
 ### New Install / Get Updates
 
 ```shell
-bash <(curl -s https://raw.githubusercontent.com/mtik00/dotfiles/main/setup.sh)
+bash <(curl -s https://raw.githubusercontent.com/mtik00/dotfiles-cachyos/main/setup.sh)
 ```
 
 NOTE: For normal updates, you can also just use this (also aliased as `cu`):
