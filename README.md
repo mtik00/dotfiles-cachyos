@@ -41,3 +41,9 @@ NOTE: You might want to set up GitHub authentication so you're not always prompt
 - ENV vars should be exported in `.zshenv` (except `${PATH}`, which should be in `.zshrc`)
 - source code should be cloned into `~/.local/share`
 - environment specific configuration instructions should be stored elsewhere
+
+## Debugging
+
+- Clone this repo
+- `cd` to the repo
+- Run: `~/bin/chezmoi init --apply --source $(pwd)`

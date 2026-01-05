@@ -3,6 +3,6 @@ set -euo pipefail
 
 {{- if (eq .chezmoi.osRelease.id "cachyos" )}}
 
-sudo pacman -S --noconfirm {{ range .packages.debian.default -}}{{ . }} {{ end }}
+sudo pacman -S --noconfirm {{ range .packages.cachyos.default -}}{{ . }} {{ end }}
 
 {{ end }}
