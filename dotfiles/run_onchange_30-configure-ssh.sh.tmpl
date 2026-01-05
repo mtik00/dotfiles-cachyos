@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+mkdir -p "${HOME}/.ssh"
+chmod 700 "${HOME}/.ssh"
+
+{{- if eq .config "work-laptop" }}
+[[ "{{ .install_op }}" != "true" ]] && exit 0
+[ ! -f "${HOME}/bin/op" ] && exit 0
+
+${HOME}/bin/_oplogin
+
+keys=( id_rsa tim.mcfadden.test )
+for key in ${keys[@]}; do
+
+    if ! [[ -f "${HOME}/.ssh/${key}.pub" ]]; then
+        op read --force --out-file "${HOME}/.ssh/${key}.pub" "op://private/${key}/${key}.pub"
+    fi
+
+    if ! [[ -f "${HOME}/.ssh/${key}" ]]; then
+        op read --force --out-file "${HOME}/.ssh/${key}" "op://private/${key}/${key}"
+        chmod 400 "${HOME}/.ssh/${key}"
+    fi
+done
+
+op read "op://private/ssh config/notesPlain" > "${HOME}/.ssh/config"
+{{ end }}

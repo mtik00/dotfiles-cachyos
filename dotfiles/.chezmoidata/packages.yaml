@@ -1,0 +1,21 @@
+packages:
+  cachyos:
+    default:
+      - ca-certificates
+      - curl
+      - dnsutils
+      - git
+      - gitk
+      - htop
+      - jq
+      - keychain
+      - make
+      - pass
+      - pass-otp
+      - podman
+      - ripgrep
+      - unzip
+      - yq
+      - zsh
+    docker:
+      - curl

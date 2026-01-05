@@ -1,0 +1,31 @@
+{{- $choices := list "work-laptop" "personal" -}}
+{{- $config := promptChoiceOnce . "config" "Config name" $choices -}}
+
+{{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $full_name := promptStringOnce . "name" "Full name" "Tim McFadden" -}}
+{{- $github_email := promptStringOnce . "github_email" "GitHub email" "mtik00@users.noreply.github.com" -}}
+{{- $github_name := promptStringOnce . "github_name" "GitHub full name" "Timothy McFadden" -}}
+{{- $github_username := promptStringOnce . "github_username" "GitHub username" "mtik00" -}}
+{{- $install_docker := promptBoolOnce . "install_docker" "Install Docker" -}}
+{{- $install_k8s := promptBoolOnce . "install_k8s" "Install k8s utilities" -}}
+
+[data]
+    config = {{ $config | quote }}
+    name = {{ $full_name | quote }}
+    email = {{ $email | quote }}
+    github_username = {{ $github_username | quote }}
+    github_name = {{ $github_name | quote }}
+    github_email = {{ $github_email | quote }}
+    install_docker = {{ $install_docker }}
+    install_k8s = {{ $install_k8s }}
+    install_op = false
+    github_askpass = false
+    wsl = {{ contains "WSL" .chezmoi.kernel.osrelease }}
+    personal_code_dir = "{{ .chezmoi.homeDir }}/code{{ if eq $config "work-laptop" }}/personal{{ end }}"
+
+[scriptEnv]
+{{- if eq $config "work-laptop"}}
+    PYTHON_VERSION = "3.11.9"
+{{- else }}
+    PYTHON_VERSION = "3.12.6"
+{{- end }}

@@ -1,0 +1,35 @@
+command_timeout = 1000
+
+[package]
+disabled = true
+
+[aws]
+disabled = true
+
+[python]
+format = '[${symbol}(${version})]($style)'
+
+[git_status]
+conflicted = '🏳'
+# ahead = '🏎💨'
+# behind = '😰'
+# diverged = '😵'
+up_to_date = ''
+untracked = '🤷'
+stashed = '📦'
+modified = '📝'
+staged = '[++\($count\)](green)'
+renamed = '👅'
+deleted = '🗑'
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+
+[java]
+disabled = true
+
+[env_var.CTX]
+format = ' 🈸:[$env_value](fg:green)'
+
+[env_var.DESK_NAME]
+format = '📝:[$env_value](fg:green)'

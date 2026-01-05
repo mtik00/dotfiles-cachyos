@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euo pipefail
+
+{{- if (eq .chezmoi.osRelease.id "cachyos" )}}
+
+sudo pacman -S --noconfirm {{ range .packages.debian.default -}}{{ . }} {{ end }}
+
+{{- else if or (eq .chezmoi.osRelease.id "debian") (contains "debian" (.chezmoi.osRelease.idLike | default "")) }}
+
+sudo apt-get update
+sudo apt-get install --upgrade --yes {{ range .packages.debian.default -}}{{ . }} {{ end }}
+{{- if .install_docker }}
+sudo apt-get install --upgrade --yes {{ range .packages.debian.docker -}}{{ . }} {{ end}}
+{{ end }}
+{{ end }}

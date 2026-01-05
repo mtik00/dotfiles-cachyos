@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+from datetime import datetime, timezone
+
+local_date = datetime.now()
+utc_date = local_date.astimezone(tz=timezone.utc)
+
+print("local:", local_date.strftime("%Y-%m-%dT%H:%M:%S.%fZ"))
+print("  utc:", utc_date.strftime("%Y-%m-%dT%H:%M:%S.%fZ"))
